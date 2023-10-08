@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Application</title>
+    <link rel="icon" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- FontAweome CDN Link for Icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+
+  <!-- Info Box -->
+  <div class="info_box">
+    <div class="info-title center-container">
+      <span><h1>Road Code Mastery</h1></span>
+    </div>
+    <div class="info-list">
+      <div class="info">Welcome to Road Code Mastery</div>
+      <div class="info">
+        This website is all about teaching <span>You</span> to drive
+      </div>
+      <div class="info">
+        This site offers interactive quizzes to test your knowledge
+      </div>
+      <div class="info">Prepare to become a <span>Road Code Master</span></div>
+    </div>
+
+    <div class="buttons">
+      <button id="redirectButton1" class="new_page">About</button>
+      <button id="redirectButton2" class="new_page">Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const start_btn = document.querySelector(".start_btn button");
+    const info_box = document.querySelector(".info_box");
+    info_box.classList.add("activeInfo"); //show info box
+
+    document
+      .getElementById("redirectButton1")
+      .addEventListener("click", function () {
+        window.location.href = "about.html";
+      });
+
+    document
+      .getElementById("redirectButton2")
+      .addEventListener("click", function () {
+        window.location.href = "quiz.html";
+      });
+  </script>
+</html>
