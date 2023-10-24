@@ -17,7 +17,7 @@ start_btn.onclick = () => {
 
 // if exitQuiz button clicked
 exit_btn.onclick = () => {
-  info_box.classList.remove("activeInfo"); //hide info box
+  window.location.href = "index.html";
 };
 
 // if continueQuiz button clicked
@@ -26,11 +26,12 @@ continue_btn.onclick = () => {
   quiz_box.classList.add("activeQuiz"); //show quiz box
   showQuetions(0); //calling showQestions function
   queCounter(1); //passing 1 parameter to queCounter
-  startTimer(15); //calling startTimer function
+  startTimer(45); //calling startTimer function
   startTimerLine(0); //calling startTimerLine function
+  timeText.style.color = "#ffffff";
 };
 
-let timeValue = 15;
+let timeValue = 45;
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -45,11 +46,14 @@ const quit_quiz = result_box.querySelector(".buttons .quit");
 restart_quiz.onclick = () => {
   quiz_box.classList.add("activeQuiz"); //show quiz box
   result_box.classList.remove("activeResult"); //hide result box
-  timeValue = 15;
+  timeValue = 45;
   que_count = 0;
   que_numb = 1;
   userScore = 0;
   widthValue = 0;
+  timeCount.style.color = "#ffffff";
+  timeText.style.color = "#ffffff";
+
   showQuetions(que_count); //calling showQestions function
   queCounter(que_numb); //passing que_numb value to queCounter
   clearInterval(counter); //clear counter
@@ -58,6 +62,7 @@ restart_quiz.onclick = () => {
   startTimerLine(widthValue); //calling startTimerLine function
   timeText.textContent = "Time Left"; //change the text of timeText to Time Left
   next_btn.classList.remove("show"); //hide the next button
+  //change timer color back to white
 };
 
 // if quitQuiz button clicked
@@ -71,6 +76,10 @@ const bottom_ques_counter = document.querySelector("footer .total_que");
 // if Next Que button clicked
 next_btn.onclick = () => {
   if (que_count < questions.length - 1) {
+    timeCount.style.color = "#ffffff";
+    timeText.style.color = "#ffffff";
+    time_line.style.backgroundColor = "#00ff99";
+
     //if question count is less than total question length
     que_count++; //increment the que_count value
     que_numb++; //increment the que_numb value
@@ -82,7 +91,12 @@ next_btn.onclick = () => {
     startTimerLine(widthValue); //calling startTimerLine function
     timeText.textContent = "Time Left"; //change the timeText to Time Left
     next_btn.classList.remove("show"); //hide the next button
+    //change timer color back to white
   } else {
+    timeCount.style.color = "#ffffff";
+    timeText.style.color = "#ffffff";
+    time_line.style.backgroundColor = "#00ff99";
+
     clearInterval(counter); //clear counter
     clearInterval(counterLine); //clear counterLine
     showResult(); //calling showResult function
@@ -167,7 +181,7 @@ function showResult() {
   quiz_box.classList.remove("activeQuiz"); //hide quiz box
   result_box.classList.add("activeResult"); //show result box
   const scoreText = result_box.querySelector(".score_text");
-  if (userScore > 3) {
+  if (userScore > 9) {
     // if user scored more than 3
     //creating a new span tag and passing the user score number and total question number
     let scoreTag =
@@ -177,7 +191,7 @@ function showResult() {
       questions.length +
       "</p></span>";
     scoreText.innerHTML = scoreTag; //adding new span tag inside score_Text
-  } else if (userScore > 1) {
+  } else if (userScore > 5) {
     // if user scored more than 1
     let scoreTag =
       "<span>and nice 😎, You got <p>" +
@@ -207,6 +221,10 @@ function startTimer(time) {
       //if timer is less than 9
       let addZero = timeCount.textContent;
       timeCount.textContent = "0" + addZero; //add a 0 before time value
+      //change the color of time text
+      timeCount.style.color = "#E74C3C";
+      timeText.style.color = "#E74C3C";
+      time_line.style.background = "#E74C3C";
     }
     if (time < 0) {
       //if timer is less than 0
@@ -231,7 +249,7 @@ function startTimer(time) {
 }
 
 function startTimerLine(time) {
-  counterLine = setInterval(timer, 29);
+  counterLine = setInterval(timer, 90);
   function timer() {
     time += 1; //upgrading time value with 1
     time_line.style.width = time + "px"; //increasing width of time_line with px by time value
